@@ -1,0 +1,93 @@
+h1,
+h2,
+h3,
+h4,
+p,
+.whichCity {
+  font-family: "Dosis", sans-serif;
+}
+
+.card {
+  background: radial-gradient(
+    592px at 48.2% 50%,
+    rgba(255, 255, 249, 0.6) 0%,
+    rgb(160, 199, 254) 74.6%
+  );
+  border-radius: 20px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 50px 30px;
+}
+
+.whichCity {
+  position: relative;
+  left: 270px;
+}
+
+.searchBtn {
+  position: relative;
+  left: 250px;
+}
+
+.changeBtn {
+  position: relative;
+  left: 110px;
+}
+
+.weatherMain {
+  position: relative;
+  top: -18px;
+}
+
+.currentContainer {
+  padding: 10px;
+  margin: 20px 0;
+}
+
+.currentCity {
+  text-transform: capitalize;
+}
+
+.currentTemp {
+  text-align: center;
+  font-family: "Quicksand", sans-serif;
+}
+
+.tempScale {
+  color: #000;
+  text-decoration: none;
+  transition: 100ms all ease-in-out;
+  font-size: 20px;
+  position: relative;
+  bottom: 8px;
+}
+
+.tempScale:hover {
+  color: #4d4c48;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.currentIcon {
+  display: block;
+  margin: 0 auto;
+}
+
+.forecastContainer {
+  padding: 10px;
+  text-align: center;
+}
+
+.forecastIcon {
+  max-width: 50px;
+}
+
+.forecastTemp {
+  font-size: 12px;
+}
+
+.highTemp {
+  font-weight: bold;
+}
