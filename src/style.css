@@ -22,18 +22,7 @@ p,
 }
 
 .whichCity {
-  position: relative;
-  left: 270px;
-}
-
-.searchBtn {
-  position: relative;
-  left: 250px;
-}
-
-.changeBtn {
-  position: relative;
-  left: 110px;
+  width: 100%;
 }
 
 .weatherMain {
