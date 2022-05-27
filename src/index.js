@@ -1,4 +1,14 @@
 function formattedTime(time) {
+  let today = new Date(time);
+  let hour = today.getHours();
+  if (hour < 10) {
+    hour = `0${hour}`;
+  }
+  let minute = today.getMinutes();
+  if (minute < 10) {
+    minute = `0${minute}`;
+  }
+
   let days = [
     "Sunday",
     "Monday",
@@ -8,64 +18,51 @@ function formattedTime(time) {
     "Friday",
     "Saturday",
   ];
-  let day = days[time.getDay()];
-  let hour = time.getHours();
-  if (hour < 10) {
-    hour = `0${hour}`;
-  }
-
-  let minute = time.getMinutes();
-  if (minute < 10) {
-    minute = `0${minute}`;
-  }
-
+  let day = days[today.getDay()];
   return `${day}, ${hour}:${minute}`;
 }
-let dayTime = document.querySelector("#day-time");
-let today = new Date();
-dayTime.innerHTML = formattedTime(today);
 
 function searchData(showResult) {
-  let temp = Math.round(showResult.data.main.temp);
-  console.log(showResult);
-  console.log(temp);
-  console.log(showResult.data.weather[0].main);
-  let weatherMain = showResult.data.weather[0].main;
+  let nameElement = document.querySelector("#current-city");
+  let dateElement = document.querySelector("#day-time");
+  let SearchedWeatherElement = document.querySelector("#weather-main");
+  let tempElement = Math.round(showResult.data.main.temp);
+  let weatherMainElement = showResult.data.weather[0].main;
+  let searchedTempElement = document.querySelector("#degree");
+  let windElement = document.querySelector("#wind");
+  let humidityElement = document.querySelector("#humidity");
 
-  let searchedWeather = document.querySelector("#weather-main");
-  searchedWeather.innerHTML = weatherMain;
-
-  let searchedTemp = document.querySelector("#degree");
-  searchedTemp.innerHTML = temp;
-
-  document.querySelector("#wind").innerHTML = Math.round(
-    showResult.data.wind.speed
-  );
-
-  document.querySelector("#humidity").innerHTML = Math.round(
-    showResult.data.main.humidity
-  );
+  nameElement.innerHTML = showResult.data.name;
+  dateElement.innerHTML = formattedTime(showResult.data.dt * 1000);
+  SearchedWeatherElement.innerHTML = weatherMainElement;
+  searchedTempElement.innerHTML = tempElement;
+  windElement.innerHTML = Math.round(showResult.data.wind.speed);
+  humidityElement.innerHTML = Math.round(showResult.data.main.humidity);
 }
 
-function searchCity(event) {
-  event.preventDefault();
-  let cityInput = document.querySelector("#which-city");
-  let searchedCity = document.querySelector("#current-city");
-
-  if (cityInput.value) {
-    searchedCity.innerHTML = `${cityInput.value}`;
-  } else {
-    alert("Please type a city!");
-  }
-
+function search(city) {
   let units = "metric";
   let apiKey = "ceaf6bfc5bcf7b020bba053d944137d0";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&units=${units}&appid=${apiKey}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${units}&appid=${apiKey}`;
   axios.get(apiUrl).then(searchData);
 }
 
-let searchBtn = document.querySelector("#search-button");
-searchBtn.addEventListener("click", searchCity);
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#which-city");
+  let searchedCity = document.querySelector("#current-city");
+  search(cityInputElement.value);
+  if (cityInputElement.value) {
+    searchedCity.innerHTML = `${cityInputElement.value}`;
+  } else {
+    alert("Please enter a city!");
+  }
+}
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
+
+search("Uppsala");
 
 function changeToFahrenheit(event) {
   event.preventDefault();
@@ -92,8 +89,6 @@ function getPosition(result) {
   let lon = result.coords.longitude;
 
   function getData(showData) {
-    console.log(showData.data.main.temp);
-    console.log(showData.data.name);
     let temp = Math.round(showData.data.main.temp);
     let cityName = showData.data.name;
     let weatherMain = showData.data.weather[0].main;
@@ -102,21 +97,18 @@ function getPosition(result) {
       locationData.preventDefault();
 
       let locationName = document.querySelector("#current-city");
-      locationName.innerHTML = cityName;
-
       let locationTemp = document.querySelector("#degree");
-      locationTemp.innerHTML = temp;
-
       let locationWeather = document.querySelector("#weather-main");
+      let locationWind = document.querySelector("#wind");
+      let locationHumidity = document.querySelector("#humidity");
+      let dateElement = document.querySelector("#day-time");
+
+      locationName.innerHTML = cityName;
+      locationTemp.innerHTML = temp;
       locationWeather.innerHTML = weatherMain;
-
-      document.querySelector("#wind").innerHTML = Math.round(
-        showData.data.wind.speed
-      );
-
-      document.querySelector("#humidity").innerHTML = Math.round(
-        showData.data.main.humidity
-      );
+      locationWind.innerHTML = Math.round(showData.data.wind.speed);
+      locationHumidity.innerHTML = Math.round(showData.data.main.humidity);
+      dateElement.innerHTML = formattedTime(showData.data.dt * 1000);
     }
 
     let changeBtn = document.querySelector("#locateBtn");
