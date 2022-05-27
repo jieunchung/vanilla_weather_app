@@ -59,7 +59,7 @@ function handleSubmit(event) {
   let searchedCity = document.querySelector("#current-city");
   search(cityInputElement.value);
   if (cityInputElement.value) {
-    searchedCity.innerHTML = `${cityInputElement.value}`;
+    searchedCity.innerHTML = showResult.data.name;
   } else {
     alert("Please enter a city!");
   }
