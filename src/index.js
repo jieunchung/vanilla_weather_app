@@ -31,6 +31,7 @@ function searchData(showResult) {
   let searchedTempElement = document.querySelector("#degree");
   let windElement = document.querySelector("#wind");
   let humidityElement = document.querySelector("#humidity");
+  let iconElement = document.querySelector("#current-icon");
 
   nameElement.innerHTML = showResult.data.name;
   dateElement.innerHTML = formattedTime(showResult.data.dt * 1000);
@@ -38,6 +39,11 @@ function searchData(showResult) {
   searchedTempElement.innerHTML = tempElement;
   windElement.innerHTML = Math.round(showResult.data.wind.speed);
   humidityElement.innerHTML = Math.round(showResult.data.main.humidity);
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${showResult.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", showResult.data.weather[0].description);
 }
 
 function search(city) {
