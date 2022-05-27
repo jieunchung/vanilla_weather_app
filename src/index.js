@@ -108,6 +108,7 @@ function getPosition(result) {
       let locationWind = document.querySelector("#wind");
       let locationHumidity = document.querySelector("#humidity");
       let dateElement = document.querySelector("#day-time");
+      let iconElement = document.querySelector("#current-icon");
 
       locationName.innerHTML = cityName;
       locationTemp.innerHTML = temp;
@@ -115,6 +116,11 @@ function getPosition(result) {
       locationWind.innerHTML = Math.round(showData.data.wind.speed);
       locationHumidity.innerHTML = Math.round(showData.data.main.humidity);
       dateElement.innerHTML = formattedTime(showData.data.dt * 1000);
+      iconElement.setAttribute(
+        "src",
+        `http://openweathermap.org/img/wn/${showData.data.weather[0].icon}@2x.png`
+      );
+      iconElement.setAttribute("alt", showData.data.weather[0].description);
     }
 
     let changeBtn = document.querySelector("#locateBtn");
