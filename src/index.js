@@ -21,7 +21,7 @@ function formattedTime(time) {
     "Saturday",
   ];
   let day = days[today.getDay()];
-  return `${day}, ${hour}:${minute}`;
+  return `Last Updated: ${day}, ${hour}:${minute}`;
 }
 
 function formattedDays(newDays) {
@@ -34,7 +34,6 @@ function formattedDays(newDays) {
 
 function displayForecast(display) {
   let forecast = display.data.daily;
-  console.log(forecast);
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
 
@@ -110,7 +109,7 @@ function getLocation(locationData) {
   navigator.geolocation.getCurrentPosition(getPosition);
 }
 
-let locationButton = document.querySelector("#locateBtn");
+let locationButton = document.querySelector("#locate-btn");
 locationButton.addEventListener("click", getLocation);
 
 function changeToFahrenheit(event) {
