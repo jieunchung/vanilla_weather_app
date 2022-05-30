@@ -24,6 +24,28 @@ function formattedTime(time) {
   return `${day}, ${hour}:${minute}`;
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+
+  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col forecastCol">
+                     <p> ${day} </p>
+                      <img class="forecastIcon" src="https://openweathermap.org/img/wn/01d@2x.png" alt="sunny-weather">
+                      <p class="forecastTemp">
+                          <span class="highTemp">20˚</span>
+                          /
+                        <span class="lowTemp">3˚</span>
+                    </p>
+                    </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function searchData(showResult) {
   celsiusTemp = showResult.data.main.temp;
   let nameElement = document.querySelector("#current-city");
@@ -37,6 +59,8 @@ function searchData(showResult) {
   let iconElement = document.querySelector("#current-icon");
   fahrenheitLink.classList.remove("active");
   celsiusLink.classList.add("active");
+
+  displayForecast();
 
   nameElement.innerHTML = showResult.data.name;
   dateElement.innerHTML = formattedTime(showResult.data.dt * 1000);
