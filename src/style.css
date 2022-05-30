@@ -44,29 +44,12 @@ p,
   font-family: "Quicksand", sans-serif;
 }
 
-.currentTemp .active {
-  color: #145fd7;
-  cursor: default;
-  text-decoration: none;
-}
-
-.currentTemp .active:hover {
-  cursor: default;
-  text-decoration: none;
-}
-
 .tempScale {
   color: #000;
   text-decoration: none;
-  transition: 100ms all ease-in-out;
   font-size: 20px;
   position: relative;
   bottom: 10px;
-}
-
-.tempScale:hover {
-  cursor: pointer;
-  text-decoration: none;
 }
 
 .currentIcon {
@@ -84,11 +67,15 @@ p,
 }
 
 .forecastTemp {
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .highTemp {
-  font-weight: bold;
+  font-weight: 500;
+  color: #982a19;
+}
+.lowTemp {
+  opacity: 70%;
 }
 
 .host {
