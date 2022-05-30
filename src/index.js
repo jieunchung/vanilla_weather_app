@@ -24,7 +24,8 @@ function formattedTime(time) {
   return `${day}, ${hour}:${minute}`;
 }
 
-function displayForecast() {
+function displayForecast(display) {
+  console.log(display);
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
 
@@ -46,6 +47,11 @@ function displayForecast() {
   forecastElement.innerHTML = forecastHTML;
 }
 
+function getForecast(getCoords) {
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${getCoords.lat}&lon=${getCoords.lon}&appid=${apiKey}`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function searchData(showResult) {
   celsiusTemp = showResult.data.main.temp;
   let nameElement = document.querySelector("#current-city");
@@ -60,7 +66,7 @@ function searchData(showResult) {
   fahrenheitLink.classList.remove("active");
   celsiusLink.classList.add("active");
 
-  displayForecast();
+  getForecast(showResult.data.coord);
 
   nameElement.innerHTML = showResult.data.name;
   dateElement.innerHTML = formattedTime(showResult.data.dt * 1000);
