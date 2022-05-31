@@ -28,6 +28,7 @@ p,
 .weatherMain {
   position: relative;
   top: -18px;
+  text-transform: capitalize;
 }
 
 .currentContainer {

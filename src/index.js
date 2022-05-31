@@ -73,7 +73,7 @@ function searchData(showResult) {
   let dateElement = document.querySelector("#day-time");
   let SearchedWeatherElement = document.querySelector("#weather-main");
   let tempElement = Math.round(celsiusTemp);
-  let weatherMainElement = showResult.data.weather[0].main;
+  let weatherMainElement = showResult.data.weather[0].description;
   let searchedTempElement = document.querySelector("#degree");
   let windElement = document.querySelector("#wind");
   let humidityElement = document.querySelector("#humidity");
